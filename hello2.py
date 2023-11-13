@@ -1,8 +1,8 @@
 def a():
     list1  = []
     list2 = []
-    x   = int(input("Enter The Number: "))
-    y = int(input("Enter the "))
+   
+    y = int(input("Enter the Range: "))
     for i in range(y):
         if (i%2==0):
             list1.append(i)
