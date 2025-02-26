@@ -27,6 +27,6 @@ def push_to_github(repo_path, commit_message, remote_url, branch_name='main'):
 # Replace the placeholders with your actual values
 repo_path = os.getcwd()
 commit_message = "Added Asynchrnous Programming, OOPs and Intermedaite Python Folders"
-remote_url = "https://github.com/ChandraPrakash1486/Python.git"
+remote_url = input("Enter the remote URL of your GitHub repository: ")
 
 push_to_github(repo_path, commit_message, remote_url)
