@@ -1,5 +1,5 @@
 import subprocess
-
+import os
 def run_command(command):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     output, error = process.communicate()
@@ -25,7 +25,7 @@ def push_to_github(repo_path, commit_message, remote_url, branch_name='main'):
             break
 
 # Replace the placeholders with your actual values
-repo_path = "C:\\Users\\us\\Desktop\\Programming\\Python"
+repo_path = os.getcwd()
 commit_message = "Added Asynchrnous Programming, OOPs and Intermedaite Python Folders"
 remote_url = "https://github.com/ChandraPrakash1486/Python.git"
 
