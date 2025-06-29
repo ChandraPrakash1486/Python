@@ -1,0 +1,2 @@
+# Python
+this repository shows my learnings, and code that I write during my journey of learning Python. I explore new concepts, and ways to write code in Python everyday and I love to learn and teach those concepts through code.
