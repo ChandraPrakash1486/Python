@@ -1,0 +1,36 @@
+name: 🔄 Update blog categories
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: [ main ]
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch blog-category repos
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Accept: application/vnd.github.mercy-preview+json" \
+            "https://api.github.com/users/${{ github.repository_owner }}/repos?per_page=100" \
+          | jq '[.[] | select(.topics | index("blog-category")) | { name, html_url, description }]' \
+          > _data/repos.json
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "actions@github.com"
+          if git diff --quiet _data/repos.json; then
+            echo "No changes."
+            exit 0
+          fi
+          git add _data/repos.json
+          git commit -m "chore: sync blog categories"
+          git push
